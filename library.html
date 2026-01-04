@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
 </head>
+
 <body>
+    <button class="newBookBtn"> + New Book </button>
+
+    <dialog class="modal">
+        <form action="" id="form">
+            <input class="inputs" id="titleIp" type="text" name="title" placeholder="Enter Title" required>
+            <input class="inputs" id="authorIp" type="text" name="author" placeholder="Enter Author" required>
+            <input class="inputs" id="pagesIp" type="number" name="pages" placeholder="Enter Total Pages" required>
+            Read this book ? : <input id="readIp" type="checkbox" name="read" required>
+            <button class="submitBookBtn" type="submit">Submit</button>
+        </form>
+
+        <button class="closeBtn"> Close </button>
+    </dialog>
+
     <div class="library"></div>
 
     <script src="library.js"></script>
 </body>
+
 </html>

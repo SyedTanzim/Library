@@ -1,49 +1,75 @@
+//books array
 const myLibrary = [{
     id: crypto.randomUUID(),
-    title: 'harry',
-    author: 'jk-rollin',
-    pages: '205',
-    readStatus: 'yes'
+    title: "1984",
+    author: "George Orwell",
+    pages: 328,
+    read: 'Yes'
 },
 {
     id: crypto.randomUUID(),
-    title: 'harry',
-    author: 'jk-rollin',
-    pages: '205',
-    readStatus: 'yes'
+    title: "The Hobbit",
+    author: "J.R.R. Tolkien",
+    pages: 310,
+    read: 'No'
 }];
 
+//book object
 function Book(id, title, author, pages, read) {
     this.id = id;
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-}
-
-function displayBook() {
-    myLibrary.forEach((book) => {
-        const library = document.querySelector('.library');
-        const card = document.createElement('div');
-        const title = document.createElement('h2');
-        const author = document.createElement('h3');
-        const pages = document.createElement('p');
-        
-        card.className = book.id;
-        library.appendChild(card);
-
-        title.innerText = book.title;
-        title.className = 'title';
-        card.appendChild(title);
-
-        author.innerText = book.author;
-        author.className = 'author';
-        card.appendChild(author);
-
-        pages.innerText = book.pages;
-        pages.className = 'pages';
-        card.appendChild(pages);   
-    });
 };
 
-displayBook();
+//New book button open
+document.querySelector('.newBookBtn').addEventListener('click', () => {
+    const modal = document.querySelector('.modal');
+    modal.show();
+});
+
+//New book button close
+document.querySelector('.closeBtn').addEventListener('click', () => {
+    const modal = document.querySelector('.modal');
+    modal.close();
+});
+
+//render books
+function renderBooks() {
+    const library = document.querySelector('.library');
+    library.textContent = '';
+
+    myLibrary.forEach(book => {
+
+        const bookCard = document.createElement('div');
+        bookCard.className = book.id;
+
+        const title = document.createElement('h1');
+        title.innerText = book.title;
+        bookCard.appendChild(title);
+
+        const author = document.createElement('p');
+        author.innerText = `Author: ${book.author}`;
+        bookCard.appendChild(author);
+
+        const pages = document.createElement('p');
+        pages.innerText = `Total pages : ${book.pages}`;
+        bookCard.appendChild(pages);
+
+        const read = document.createElement('button');
+        read.className = 'readToggleBtn'
+        read.innerText = book.read;
+        bookCard.appendChild(read);
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerText = 'Delete Book'
+        deleteBtn.className = 'deleteBtn';
+        bookCard.appendChild(deleteBtn);
+
+        library.appendChild(bookCard);
+    });
+    deleteCard();
+};
+
+renderBooks();
