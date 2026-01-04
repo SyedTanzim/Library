@@ -35,6 +35,28 @@ document.querySelector('.closeBtn').addEventListener('click', () => {
     modal.close();
 });
 
+// add new book
+function addBookToLibrary(id, title, author, pages, read) {
+    const newBook = new Book(id, title, author, pages, read);
+    myLibrary.push(newBook);
+    renderBooks();
+};
+
+document.querySelector('.submitBookBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    const title = document.getElementById('titleIp').value;
+    const author = document.getElementById('authorIp').value;
+    const pages = document.getElementById('pagesIp').value;
+
+    const read = document.getElementById('readIp');
+    let readStatus = 'No';
+    if (read.checked == true) {
+        readStatus = 'Yes';
+    };
+
+    addBookToLibrary(crypto.randomUUID(), title, author, pages, readStatus);
+});
+
 //render books
 function renderBooks() {
     const library = document.querySelector('.library');
