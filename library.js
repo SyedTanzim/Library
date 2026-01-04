@@ -57,6 +57,21 @@ document.querySelector('.submitBookBtn').addEventListener('click', (e) => {
     addBookToLibrary(crypto.randomUUID(), title, author, pages, readStatus);
 });
 
+//Delete a book
+function deleteCard() {
+    let deleteBtn = document.querySelectorAll('.deleteBtn');
+
+    deleteBtn.forEach(btn => {
+        btn.addEventListener('click', () => {
+            let deleteID = btn.parentElement.className;
+            let index = myLibrary.findIndex(i => i.id == deleteID);
+            myLibrary.splice(index, 1);
+            console.log(index);
+            renderBooks();
+        });
+    });
+};
+
 //render books
 function renderBooks() {
     const library = document.querySelector('.library');
