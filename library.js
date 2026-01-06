@@ -27,7 +27,8 @@ function renderBooks() {
     myLibrary.forEach(book => {
 
         const bookCard = document.createElement('div');
-        bookCard.className = book.id;
+        bookCard.dataset.id = book.id;
+        bookCard.className = 'bookCard';
 
         const title = document.createElement('h1');
         title.innerText = book.title;
@@ -57,7 +58,7 @@ function renderBooks() {
         bookCard.appendChild(deleteBtn);
 
         deleteBtn.addEventListener('click', () => {
-            let deleteID = deleteBtn.parentElement.className;
+            const deleteID = bookCard.dataset.id;
             let index = myLibrary.findIndex(i => i.id == deleteID);
             myLibrary.splice(index, 1);
             renderBooks();
