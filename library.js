@@ -2,17 +2,19 @@
 const myLibrary = [];
 
 //book object
-function Book(id, title, author, pages, read) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-};
+class Book {
+    constructor(id, title, author, pages, read) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 
-Book.prototype.toggleRead = function () {
-    this.read = !this.read;
-};
+    toggleRead() {
+        this.read = !this.read;
+    }
+}
 
 let myBook = new Book(crypto.randomUUID(), 'harry potter', 'jk rollins', 1000, true);
 myLibrary.push(myBook);
@@ -44,10 +46,12 @@ function renderBooks() {
 
         const read = document.createElement('button');
         read.className = 'toggleBtn';
-        read.innerText = book.read;
+
+        read.textContent = `Read: ${book.read}`;
+
         read.addEventListener('click', () => {
             book.toggleRead();
-            read.innerText = book.read;
+            read.textContent = `Read: ${book.read}`;
         });
 
         bookCard.appendChild(read);
